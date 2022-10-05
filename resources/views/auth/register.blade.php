@@ -31,39 +31,49 @@
                                     </div>
                                 </a>
                             </div>
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="p-2">
                                 <form class="needs-validation" action="{{ route('register') }}" method="POST">
                                     @csrf
                                     <div class="mb-2">
                                         <label for="accountNo" class="form-label">Account Number</label>
-                                        <input type="text" class="form-control" id="accountNo" name="AccountNumber" placeholder="Enter Your Account Number" required>
+                                        <input type="text" class="form-control" id="accountNo" name="AccountNumber" placeholder="Enter Your Account Number" >
                                     </div>
                                     <div class="mb-2">
                                         <label for="firstname" class="form-label">Firstname</label>
-                                        <input type="text" class="form-control" id="firstname" name="FirstName" placeholder="Enter First Name" required>
+                                        <input type="text" class="form-control" id="firstname" name="FirstName" placeholder="Enter First Name" >
                                     </div>
                                     <div class="mb-2">
                                         <label for="middlename" class="form-label">Middlename</label>
-                                        <input type="text" class="form-control" id="middlename" name="MiddleName" placeholder="Enter Middle Name" required>
+                                        <input type="text" class="form-control" id="middlename" name="MiddleName" placeholder="Enter Middle Name" >
                                     </div>
                                     <div class="mb-2">
                                         <label for="lastname" class="form-label">Lastname</label>
-                                        <input type="text" class="form-control" id="lastname" name="LastName" placeholder="Enter Last Name" required>
+                                        <input type="text" class="form-control" id="lastname" name="LastName" placeholder="Enter Last Name" >
                                     </div>
 
                                     <div class="mb-2">
                                         <label for="useremail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="useremail" name="Email" placeholder="Enter email" required>
+                                        <input type="email" class="form-control" id="useremail" name="Email" placeholder="Enter email" >
                                     </div>
 
                                     <div class="mb-2">
                                         <label for="username" class="form-label">Username</label>
-                                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" >
                                     </div>
 
                                     <div class="mb-2">
                                         <label for="userpassword" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="userpassword" name="password" placeholder="Enter password" required>
+                                        <input type="password" class="form-control" id="userpassword" name="password" placeholder="Enter password" >
                                         <div class="invalid-feedback">
                                             Please Enter Password
                                         </div>

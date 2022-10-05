@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\Customers;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -50,7 +52,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-
+            'AccountNumber' => ['required', 'string'],
+            'FirstName' => ['required', 'string'],
+            'MiddleName' => ['required', 'string'],
+            'LastName' => ['required', 'string'],
+            'Email' => ['required', 'string', 'unique:users'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
         ]);
@@ -62,10 +68,16 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create(array $data, Request $request)
     {
+        $customer = Customers::where('AccountNumber', $request->AccountNumber)->first();
+
+        if($customer->count() > 0 ){
+            return back()->with('errors', 'No Account found.');
+        }
 
         return User::create([
+            'CustomerId' => $customer->AccountNumber,
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
         ]);
