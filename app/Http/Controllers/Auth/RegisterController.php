@@ -70,11 +70,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data, Request $request)
     {
-        $customer = Customers::where('AccountNumber', $request->AccountNumber)->first();
+        // $customer = Customers::where('AccountNumber', $request->AccountNumber)->first();
 
-        if($customer->count() > 0 ){
-            return back()->with('errors', 'No Account found.');
-        }
+        // if($customer->count() > 0 ){
+        //     return back()->with('errors', 'No Account found.');
+        // }
 
         return User::create([
             'CustomerId' => $customer->AccountNumber,
