@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('Email');
             $table->string('ContactNumber');
             $table->string('UserRole')->default(0); //0 - Admin, 1 - User
+            $table->string('AccountStatus')->default(0); //0 - Pending, 1 - Verified
             $table->rememberToken();
             $table->timestamps();
         });

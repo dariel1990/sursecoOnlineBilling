@@ -24,9 +24,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware('is_admin')->group(function () {
     Route::get('admin/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home');
-    Route::get('admin/userManagement', [App\Http\Controllers\AdminController::class, 'userManagement'])->name('admin.userManagement');
+
+    //Customer Page
+    Route::get('admin/customers', [App\Http\Controllers\CustomerController::class, 'index'])->name('admin.customer.list');
+    Route::get('admin/customerList', [App\Http\Controllers\CustomerController::class, 'customerList']);
+
+    //User Page
+    Route::get('admin/users', [App\Http\Controllers\UserController::class, 'index'])->name('admin.user.list');
     Route::get('admin/userList', [App\Http\Controllers\UserController::class, 'userList']);
-    Route::post('admin/user/create', [App\Http\Controllers\UserController::class, 'createUser']);
 });
 
 Route::middleware('is_user')->group(function () {

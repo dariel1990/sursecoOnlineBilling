@@ -45,12 +45,12 @@
                                 <img src="{{ asset('assets/images/logo-light.svg') }}" alt="" height="22">
                             </span>
                             <span class="logo-lg">
-                                <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="19">
+                                <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="40">
                             </span>
                         </a>
                     </div>
 
-                    <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+                    {{-- <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
                         <i class="fa fa-fw fa-bars"></i>
                     </button>
 
@@ -60,7 +60,7 @@
                             <input type="text" class="form-control" placeholder="Search...">
                             <span class="bx bx-search-alt"></span>
                         </div>
-                    </form>
+                    </form> --}}
 
                 </div>
 
@@ -99,19 +99,23 @@
                 <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
 
                     <div class="collapse navbar-collapse" id="topnav-menu-content">
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav ">
 
-                            <li class="nav-item">
-                                <a class="nav-link dropdown-toggle arrow-none" href="{{ route('admin.home') }}" id="topnav-dashboard" role="button">
+                            <li class="nav-item ">
+                                <a class="nav-link dropdown-toggle arrow-none " href="{{ route('admin.home') }}" id="topnav-dashboard" role="button">
                                     <i class="bx bx-home-circle me-2"></i><span key="t-dashboards">Dashboards</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard" role="button">
+                                <a class="nav-link dropdown-toggle arrow-none" href="{{ route('admin.user.list') }}" id="topnav-dashboard" role="button">
                                     <i class="bx bx-user me-2"></i><span key="t-dashboards">User Management</span>
                                 </a>
                             </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link dropdown-toggle arrow-none" href="{{ route('admin.customer.list') }}" id="topnav-dashboard" role="button">
+                                    <i class="bx bx-user-pin me-2"></i><span key="t-dashboards">Customers</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>

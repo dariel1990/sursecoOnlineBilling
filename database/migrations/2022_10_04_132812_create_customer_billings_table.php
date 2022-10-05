@@ -16,12 +16,12 @@ class CreateCustomerBillingsTable extends Migration
         Schema::create('CustomerBilling', function (Blueprint $table) {
             $table->id();
             $table->integer('CustomerId');
-            $table->string('PresentReading')->unique();
-            $table->string('PreviousReading');
-            $table->string('KiloWattsUsed');
-            $table->string('CurrentBill');
-            $table->string('Arrears');
-            $table->string('TotalBill');
+            $table->integer('PresentReading');
+            $table->integer('PreviousReading');
+            $table->integer('KiloWattsUsed');
+            $table->decimal('CurrentBill', 11,2);
+            $table->decimal('Arrears', 11,2);
+            $table->decimal('TotalBill', 11,2);
             $table->string('BillingPeriodFrom');
             $table->string('BillingPeriodTo');
             $table->string('BillingStatus')->default(0); // 0 - Pending, 1 - Paid, 2 - Overdue
