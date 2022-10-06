@@ -100,22 +100,30 @@
 
                     <div class="collapse navbar-collapse" id="topnav-menu-content">
                         <ul class="navbar-nav ">
+                            @if(Auth::user()->UserRole == 0)
+                                <li class="nav-item ">
+                                    <a class="nav-link dropdown-toggle arrow-none " href="{{ route('admin.home') }}" id="topnav-dashboard" role="button">
+                                        <i class="bx bx-home-circle me-2"></i><span key="t-dashboards">Dashboards</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link dropdown-toggle arrow-none" href="{{ route('admin.user.list') }}" id="topnav-dashboard" role="button">
+                                        <i class="bx bx-user me-2"></i><span key="t-dashboards">User Management</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link dropdown-toggle arrow-none" href="{{ route('admin.customer.list') }}" id="topnav-dashboard" role="button">
+                                        <i class="bx bx-user-pin me-2"></i><span key="t-dashboards">Customers</span>
+                                    </a>
+                                </li>
+                            @else
+                                <li class="nav-item ">
+                                    <a class="nav-link dropdown-toggle arrow-none " href="" id="topnav-dashboard" role="button">
+                                        <i class="bx bx-home-circle me-2"></i><span key="t-dashboards">Dashboards</span>
+                                    </a>
+                                </li>
+                            @endif
 
-                            <li class="nav-item ">
-                                <a class="nav-link dropdown-toggle arrow-none " href="{{ route('admin.home') }}" id="topnav-dashboard" role="button">
-                                    <i class="bx bx-home-circle me-2"></i><span key="t-dashboards">Dashboards</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link dropdown-toggle arrow-none" href="{{ route('admin.user.list') }}" id="topnav-dashboard" role="button">
-                                    <i class="bx bx-user me-2"></i><span key="t-dashboards">User Management</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link dropdown-toggle arrow-none" href="{{ route('admin.customer.list') }}" id="topnav-dashboard" role="button">
-                                    <i class="bx bx-user-pin me-2"></i><span key="t-dashboards">Customers</span>
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </nav>

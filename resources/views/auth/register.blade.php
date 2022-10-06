@@ -67,6 +67,11 @@
                                     </div>
 
                                     <div class="mb-2">
+                                        <label for="contactNo" class="form-label">Contact No.</label>
+                                        <input type="text" class="form-control" id="contactNo" name="ContactNumber" placeholder="Enter contact No." >
+                                    </div>
+
+                                    <div class="mb-2">
                                         <label for="username" class="form-label">Username</label>
                                         <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" >
                                     </div>

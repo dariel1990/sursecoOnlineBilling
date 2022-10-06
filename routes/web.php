@@ -20,8 +20,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::middleware('is_admin')->group(function () {
     Route::get('admin/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home');
 
@@ -35,5 +33,5 @@ Route::middleware('is_admin')->group(function () {
 });
 
 Route::middleware('is_user')->group(function () {
-    Route::get('user/home', [App\Http\Controllers\HomeController::class, 'userHome'])->name('user.home');
+    Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('user.home');
 });
