@@ -18,7 +18,7 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::middleware('is_admin')->group(function () {
     Route::get('admin/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home');
@@ -26,12 +26,15 @@ Route::middleware('is_admin')->group(function () {
     //Customer Page
     Route::get('admin/customers', [App\Http\Controllers\CustomerController::class, 'index'])->name('admin.customer.list');
     Route::get('admin/customerList', [App\Http\Controllers\CustomerController::class, 'customerList']);
+    Route::get('admin/customerBillingDetails/{id}', [App\Http\Controllers\CustomerController::class, 'customerBillingDetails']);
 
-    //User Page
-    Route::get('admin/users', [App\Http\Controllers\UserController::class, 'index'])->name('admin.user.list');
-    Route::get('admin/userList', [App\Http\Controllers\UserController::class, 'userList']);
 });
 
 Route::middleware('is_user')->group(function () {
-    Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('user.home');
+    Route::get('home', [App\Http\Controllers\UserController::class, 'index'])->name('user.home')->middleware('verified');
+    Route::post('payNow', [App\Http\Controllers\UserController::class, 'payNow'])->name('user.paynow')->middleware('verified');
+    Route::get('payment/success/{billingId}', [App\Http\Controllers\UserController::class, 'paymentSuccess'])->name('user.success')->middleware('verified');
+    Route::get('payment/failed', [App\Http\Controllers\UserController::class, 'paymentFailed'])->name('user.failed')->middleware('verified');
 });
+
+

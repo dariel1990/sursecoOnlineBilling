@@ -17,9 +17,9 @@ class UserTableSeeder extends Seeder
         //for Admin Account
         User::create([
             'CustomerId' => null,
-            'Username' => 'admin',
-            'Password' => bcrypt('surseco'),
-            'Email' => 'sursecoBilling@gmail.com',
+            'username' => 'admin',
+            'password' => bcrypt('surseco'),
+            'email' => 'sursecoBilling@gmail.com',
             'ContactNumber' => '09062215494',
             'UserRole' => 0,
         ]);

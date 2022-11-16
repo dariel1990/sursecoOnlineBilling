@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerBilling extends Model
 {
     use HasFactory;
+    protected $table = 'customerbilling';
 
     protected $fillable = [
         'CustomerId',
@@ -27,4 +28,8 @@ class CustomerBilling extends Model
         return $this->belongsTo(Customers::class, 'CustomerId', 'id');
     }
 
+    public function customerBillTransaction()
+    {
+        return $this->hasOne(CustomerBillingTransactions::class, 'BillingId', 'id');
+    }
 }

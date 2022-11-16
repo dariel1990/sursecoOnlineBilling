@@ -41,6 +41,9 @@
                                     </ul>
                                 </div>
                             @endif
+                            @if(Session::has('message'))
+                                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                            @endif
                             <div class="p-2">
                                 <form class="needs-validation" action="{{ route('register') }}" method="POST">
                                     @csrf
@@ -63,7 +66,7 @@
 
                                     <div class="mb-2">
                                         <label for="useremail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="useremail" name="Email" placeholder="Enter email" >
+                                        <input type="email" class="form-control" id="useremail" name="email" placeholder="Enter email" >
                                     </div>
 
                                     <div class="mb-2">

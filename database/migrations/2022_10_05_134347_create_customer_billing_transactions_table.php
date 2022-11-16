@@ -16,8 +16,9 @@ class CreateCustomerBillingTransactionsTable extends Migration
         Schema::create('CustomerBillingTransactions', function (Blueprint $table) {
             $table->id();
             $table->integer('BillingId');
-            $table->decimal('AmoutPaid', 11,2);
+            $table->decimal('AmountPaid', 11,2);
             $table->dateTime('TransactionDate');
+            $table->string('PaymentMethod');
             $table->timestamps();
         });
     }

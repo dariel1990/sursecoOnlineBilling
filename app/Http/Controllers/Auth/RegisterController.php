@@ -4,13 +4,16 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Models\Customers;
+use Illuminate\Support\Str;
+use App\Rules\CustomerExist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
-use App\Rules\CustomerExist;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Notifications\UserRegisteredSuccessfully;
+use App\Rules\CustomerAlreadyRegistered;
 
 class RegisterController extends Controller
 {
@@ -53,11 +56,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'AccountNumber' => ['required', 'string', new CustomerExist],
+            'AccountNumber' => ['required', 'string', new CustomerExist, new CustomerAlreadyRegistered],
             'FirstName' => ['required', 'string'],
             'MiddleName' => ['required', 'string'],
             'LastName' => ['required', 'string'],
-            'Email' => ['required', 'string', 'unique:users'],
+            'email' => ['required', 'string', 'unique:users'],
             'ContactNumber' => ['required', 'string', 'unique:users'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
@@ -78,10 +81,10 @@ class RegisterController extends Controller
             'CustomerId' => $customer->id,
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
-            'Email' => $data['Email'],
+            'email' => $data['email'],
             'ContactNumber' => $data['ContactNumber'],
             'UserRole' => 1,
-            'AccountStatus' => 1
         ]);
+
     }
 }

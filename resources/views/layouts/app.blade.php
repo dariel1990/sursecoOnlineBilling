@@ -69,7 +69,13 @@
                     <div class="dropdown d-inline-block">
                         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{ Auth::user()->username }}</span>
+                            <span class="d-none d-xl-inline-block ms-1" key="t-henry">
+                                @if(Auth::user()->UserRole == '1')
+                                    {{ Auth::user()->customer->FirstName }} {{ Auth::user()->customer->LastName }}
+                                @else
+                                    {{ Auth::user()->username }}
+                                @endif
+                                </span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
@@ -107,11 +113,6 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link dropdown-toggle arrow-none" href="{{ route('admin.user.list') }}" id="topnav-dashboard" role="button">
-                                        <i class="bx bx-user me-2"></i><span key="t-dashboards">User Management</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link dropdown-toggle arrow-none" href="{{ route('admin.customer.list') }}" id="topnav-dashboard" role="button">
                                         <i class="bx bx-user-pin me-2"></i><span key="t-dashboards">Customers</span>
                                     </a>
@@ -119,7 +120,7 @@
                             @else
                                 <li class="nav-item ">
                                     <a class="nav-link dropdown-toggle arrow-none " href="" id="topnav-dashboard" role="button">
-                                        <i class="bx bx-home-circle me-2"></i><span key="t-dashboards">Dashboards</span>
+                                        <i class="bx bx-home-circle me-2"></i><span key="t-dashboards">Dashboard</span>
                                     </a>
                                 </li>
                             @endif
